@@ -1,7 +1,14 @@
+//Server
 const express = require('express');
 const app = express();
 const path = require('path');
 const port = 3000;
+
+//DB
+const dbConfig = require('../config.js')
+const knex = require('knex')(dbConfig)
+
+knex.select().from('test').then(console.log)
 
 app.use(express.static('dist'));
 
