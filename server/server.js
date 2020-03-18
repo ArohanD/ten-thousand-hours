@@ -65,6 +65,19 @@ app.get('/userLogs', (req, res) => {
   .catch(res.end)
 })
 
+// Verify
+// Check if user in query matches user who owns log id needing change
+const verifyUser = async (req, log_id) => {
+  let rows = await knex.select('user').from('hour_logs').where({
+    log_id: +log_id
+  })
+  return rows.length >= 1 ? rows[0].user === req.query.user : false;
+}
+
+// Tests
+// let dummyReq = {query: {user: 'postman'}}
+// verifyUser(dummyReq, 2).then(console.log)
+
 
 // ROUTER (add new routes above)
 app.get('/*', function(req, res) {
