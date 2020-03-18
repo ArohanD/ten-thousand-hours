@@ -16,8 +16,8 @@ Add row to table
 Get count via hourLogID
 Get counts via user
 Modify count 
-Change date
 Delete row
+Change date (stretch)
 
 Notes:
 Must first check that the log being modified belongs to the currently logged in user.
@@ -96,7 +96,24 @@ app.patch('/modifyCount', (req, res) => {
     })
 })
 
+// TODO: Change date
 
+// Delete Row:
+app.delete('/removeLog', (req, res) => {
+  verifyUser(req, req.query.log_id)
+    .then((veri) => {
+      if (!veri) {
+        res.status(401).send('Unable to authorize request')
+      } else {
+        knex('hour_logs')
+          .where({ log_id: +req.query.log_id }).del()
+          .then(() => {
+            res.end(`Record ${req.query.log_id} was deleted`)
+          })
+          .catch((err) => res.end(err.toString()))
+      }
+    })
+})
 
 
 // ROUTER (add new routes above)
