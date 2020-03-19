@@ -1,6 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Root from'./router.jsx';
-//if you have a theme library, import it here
+import Root from './router.jsx';
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+import AuthContext from './AuthContext.jsx'
+
+const App = () => {
+  return (
+    <AuthContext.Provider value={{ name: 'test' }}>
+      <Root />
+    </AuthContext.Provider>
+  )
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));

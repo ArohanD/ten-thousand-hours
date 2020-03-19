@@ -55,7 +55,6 @@ app.get('/userLogs', (req, res) => {
     user: req.query.user
   })
     .then((result) => {
-      console.log('res', result[0])
       res.send(result);
     })
     .catch(res.end)
@@ -105,6 +104,14 @@ app.delete('/removeLog', (req, res) => {
           .catch((err) => res.end(err.toString()))
       }
     })
+})
+
+// Testing
+app.all('/clearTests', (req, res) => {
+  knex('hour_logs').where('user', 'cypress').del()
+  .then(()=> {
+    res.end('Tests Cleared')
+  })
 })
 
 
