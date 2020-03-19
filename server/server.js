@@ -12,21 +12,15 @@ const knex = require('knex')(dbConfig)
 
 /* 
 TODO:
-Add row to table
-Get count via hourLogID
-Get counts via user
-Modify count 
-Delete row
 Change date (stretch)
 
-Notes:
-Must first check that the log being modified belongs to the currently logged in user.
 */
 
 app.use(express.static('dist'));
 
 // ADD ROW TO TABLE
 app.post('/addLog', (req, res) => {
+  // TODO: Add user verification
 
   const { user, log_name, remaining } = req.query
 
@@ -56,10 +50,12 @@ app.get('/logHours', (req, res) => {
 
 // Get user logs
 app.get('/userLogs', (req, res) => {
+  // TODO: check if request is from valid user
   knex.select().from('hour_logs').where({
     user: req.query.user
   })
     .then((result) => {
+      console.log('res', result[0])
       res.send(result);
     })
     .catch(res.end)
@@ -73,10 +69,6 @@ const verifyUser = async (req, log_id) => {
   })
   return rows.length >= 1 ? rows[0].user === req.query.user : false;
 }
-
-// Tests
-// let dummyReq = {query: {user: 'mark'}}
-// verifyUser(dummyReq, 2).then(console.log)
 
 // Modify Count
 app.patch('/modifyCount', (req, res) => {
