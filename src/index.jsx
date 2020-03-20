@@ -4,9 +4,15 @@ import Root from './router.jsx';
 
 import AuthContext from './AuthContext.jsx'
 
+const guestState = {
+  id: null,
+  email: null
+}
+
 const App = () => {
+  
   return (
-    <AuthContext.Provider value={{ name: 'test' }}>
+    <AuthContext.Provider value={guestState}>
       <Root />
     </AuthContext.Provider>
   )
