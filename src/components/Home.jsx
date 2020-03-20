@@ -1,9 +1,10 @@
 import React, { Component, useContext } from 'react';
 import AuthContext from '../AuthContext.jsx';
+//import { auth } from '../firebase.js'
 
 const Home = (props) => {
     const authState = useContext(AuthContext)
-    console.log(authState.id)
+    //auth.onAuthStateChanged((user) => console.log(user))
 
     return (
         <div>

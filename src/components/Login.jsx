@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import firebase from '../firebase.js'
+import React, { useEffect } from 'react';
+import { auth } from '../firebase.js'
 
 const Login = (props) => {
 
   useEffect(() => {
-    firebase.auth().signOut()
+    auth.signOut()
   }, [])
 
-  console.log(firebase.auth().currentUser)
-
-  if (firebase.auth().currentUser) {
+  if (auth.currentUser) {
     // redirect
   }
 
@@ -20,11 +18,11 @@ const Login = (props) => {
     const password = document.getElementById('password').value
 
     if (newUser) {
-      firebase.auth().createUserWithEmailAndPassword(userName, password)
+      auth.createUserWithEmailAndPassword(userName, password)
         .then(() => props.history.push('/'))
         .catch((error) => alert(error))
     } else {
-      firebase.auth().signInWithEmailAndPassword(userName, password)
+      auth.signInWithEmailAndPassword(userName, password)
         .then(() => props.history.push('/'))
         .catch((error) => alert(error))
     }
