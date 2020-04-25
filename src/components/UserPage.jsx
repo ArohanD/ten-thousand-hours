@@ -18,6 +18,9 @@ const UserPage = (props) => {
 
   return (
     <div>
+      <div id="userPage_greeting">
+        {`Hi ${props.user},`}
+      </div>
       <div id="log_container">
         {userData.map((log, index) => <Log log={log} key={index} />)}
       </div>

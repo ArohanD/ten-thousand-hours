@@ -55,7 +55,6 @@ app.get('/userLogs', (req, res) => {
     user: req.query.user
   })
     .then((result) => {
-      console.log(result)
       res.send(result);
     })
     .catch(res.end)
