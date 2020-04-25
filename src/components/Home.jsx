@@ -1,15 +1,19 @@
-import React, { Component, useContext } from 'react';
+import React, { Component, useState } from 'react';
 import AuthContext from '../AuthContext.jsx';
-//import { auth } from '../firebase.js'
+import { auth } from '../firebase.js'
 
 const Home = (props) => {
-    const authState = useContext(AuthContext)
-    //auth.onAuthStateChanged((user) => console.log(user))
+    const [user, setUser] = useState(null)
+    auth.onAuthStateChanged((user) => setUser(user))
+
+    if(!user) {
+        return <div>Loading...</div>
+    }
 
     return (
         <div>
             <h1>10000 Hours</h1>
-            <p></p>
+            <p>Hello {user.displayName},</p>
         </div>
     )
 }

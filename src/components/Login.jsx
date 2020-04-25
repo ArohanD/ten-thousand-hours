@@ -15,14 +15,22 @@ const Login = (props) => {
 
     // using dom methods to prevent re-rendering with onChange
     const userName = document.getElementById('userName').value
+    const eMail = document.getElementById('eMail').value
     const password = document.getElementById('password').value
 
     if (newUser) {
-      auth.createUserWithEmailAndPassword(userName, password)
-        .then(() => props.history.push('/'))
+      auth.createUserWithEmailAndPassword(eMail, password)
+        .then(() => {
+          auth.currentUser.updateProfile({
+            displayName: userName
+          })
+          .then(() => {
+            props.history.push('/')
+          })
+        })
         .catch((error) => alert(error))
     } else {
-      auth.signInWithEmailAndPassword(userName, password)
+      auth.signInWithEmailAndPassword(eMail, password)
         .then(() => props.history.push('/'))
         .catch((error) => alert(error))
     }
@@ -32,9 +40,17 @@ const Login = (props) => {
     <div>
       <form>
         <div>
-          <label htmlFor="email">e-mail</label>
+          <label htmlFor="userName">username</label>
           <input
             id='userName'
+            type="text"
+            placeholder="Malcolm"
+            name="userName" />
+        </div>
+        <div>
+          <label htmlFor="email">e-mail</label>
+          <input
+            id='eMail'
             type="text"
             placeholder="example@gmail.com"
             name="email" />
