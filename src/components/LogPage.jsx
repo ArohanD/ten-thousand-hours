@@ -10,9 +10,9 @@ const LogPage = (props) => {
         id: 2
       }
     })
-    .then(({data}) => {
-      setLog(data)
-    })
+      .then(({ data }) => {
+        setLog(data)
+      })
   }, [])
 
   return (
@@ -23,5 +23,7 @@ const LogPage = (props) => {
 }
 
 export default (props) => {
-  return <LogPage log_id={2} />
+  const urlParams = new URLSearchParams(window.location.search);
+  const log_id = urlParams.get('log_id')
+  return <LogPage log_id={log_id} />
 } 
