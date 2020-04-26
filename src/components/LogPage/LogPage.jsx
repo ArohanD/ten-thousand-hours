@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import './LogPage.css'
 
 const LogPage = (props) => {
   const [log, setLog] = useState({})
@@ -17,7 +18,18 @@ const LogPage = (props) => {
 
   return (
     <div>
-      {`${log.user} ${log.log_name} ${log.remaining} ${log.created_at}`}
+      <p className="log_text_default">
+        {`${log.user} is tracking the skill ${log.log_name}. They have `}
+      </p>
+      <p className="log_text_hours">
+        {`${log.remaining}`}
+      </p>
+      <p className="log_text_default">
+        {`hours remaining.`}
+      </p>
+      <p className="log_text_default">
+        {`Tracking since ${log.created_at}`}
+      </p>
     </div>
   )
 }

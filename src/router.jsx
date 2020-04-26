@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from './components/Home.jsx'
 import Login from './components/Login.jsx'
 import UserPage from './components/UserPage.jsx'
-import LogPage from './components/LogPage.jsx'
+import LogPage from './components/LogPage/LogPage.jsx'
 
 const RouteManager = (props) => {
 
