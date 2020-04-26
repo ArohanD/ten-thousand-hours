@@ -48,6 +48,18 @@ app.get('/logHours', (req, res) => {
     .catch(res.end)
 })
 
+// Get single log
+app.get('/singleLog', (req, res) => {
+
+  knex.select('').from('hour_logs').where({
+    log_id: +req.query.id
+  })
+    .then((result) => {
+      res.send(result[0]);
+    })
+    .catch(res.end)
+})
+
 // Get user logs
 app.get('/userLogs', (req, res) => {
   // TODO: check if request is from valid user
