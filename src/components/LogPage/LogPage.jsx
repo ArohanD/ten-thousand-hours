@@ -17,7 +17,7 @@ const LogPage = (props) => {
   }, [])
 
   return (
-    <div>
+    <div id={'log_container'}>
       <p className="log_text_default">
         {`${log.user} is tracking the skill ${log.log_name}. They have `}
       </p>
