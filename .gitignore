@@ -1,5 +1,6 @@
 .DS_Store
 node_modules
 config.js
-src/firebase.js
+firebase.js
 dist/bundle.js
+.yarn

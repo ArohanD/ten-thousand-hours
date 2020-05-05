@@ -5,7 +5,7 @@ const path = require('path');
 const port = 3000;
 
 //DB
-const dbConfig = require('../config.js')
+const dbConfig = require('./config.js')
 const knex = require('knex')(dbConfig)
 
 //Routes
@@ -16,7 +16,7 @@ Change date (stretch)
 
 */
 
-app.use(express.static('dist'));
+app.use(express.static('../dist'));
 
 // ADD ROW TO TABLE
 app.post('/addLog', (req, res) => {

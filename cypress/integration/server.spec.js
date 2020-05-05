@@ -4,7 +4,6 @@ const server = 'localhost:3000'
 
 describe('Server Tests', () => {
   it('Is able to add new items to the DB', () => {
-    cy.visit(server)
 
     const options = {
       url: `${server}/addLog?user=${'cypress'}&log_name=${'biting humans'}&remaining=${10000}`,
